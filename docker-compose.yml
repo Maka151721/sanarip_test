@@ -1,11 +1,28 @@
 version: "3.8"
+
 services:
-  web:
+  db:
+    image: mdillon/postgis:9.6
+    container_name: db
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=postgres_db
+    ports:
+      - "5432:5432"
+    volumes:
+      - data:/var/lib/postgresql/data
+  app:
+    container_name: app
     build: .
+    command: python3 manage.py runserver 0.0.0.0:8000
+    volumes:
+      - .:/src
     ports:
       - "8000:8000"
-    command: python manage.py runserver 0.0.0.0:8000
-    volumes:
-      - .:/code
+    depends_on:
+      - db
 
+volumes:
+  data:
   

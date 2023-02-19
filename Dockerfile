@@ -1,17 +1,11 @@
-# Pull base image
-FROM python:3.8-slim-bullseye
-
-# Set environment variables
-ENV PIP_DISABLE_PIP_VERSION_CHECK 1
-ENV PYTHONDONTWRITEBYTECODE 1
+FROM python:3.8
 ENV PYTHONUNBUFFERED 1
-
-# Set work directory
-WORKDIR /code
-
-# Install dependencies
-COPY ./requirements.txt .
+RUN apt-get update && apt-get install -y \
+    binutils \
+    libproj-dev \
+    gdal-bin
+RUN mkdir /src
+WORKDIR /src
+ADD requirements.txt /src/
 RUN pip install -r requirements.txt
-
-# Copy project
-COPY . .
+ADD . /src/
