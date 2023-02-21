@@ -12,7 +12,7 @@ class CultureAdmin(admin.ModelAdmin):
 
 @admin.register(Farmers)
 class FarmerAdmin(admin.ModelAdmin):
-    list_display = ('name','age', 'address')
+    list_display = ('username','name','age', 'address')
     list_filter = ('name', )
     search_fields = ("name__startswith", )
 

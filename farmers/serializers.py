@@ -1,12 +1,17 @@
 from rest_framework import serializers
 from rest_framework_gis.serializers import GeoFeatureModelSerializer
-from .models import Plots, Cultures
+from .models import Plots, Cultures,Farmers
 
 
 class CultureSerializer(serializers.ModelSerializer):
     class Meta:
         model = Cultures
         fields = ('culture_name',)
+
+class FarmerSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Farmers
+        fields = ('username',)
 
 
 class PlotSerializer(GeoFeatureModelSerializer):
@@ -15,4 +20,4 @@ class PlotSerializer(GeoFeatureModelSerializer):
     class Meta:
         model = Plots
         geo_field = 'contour'
-        fields = ['contour', 'culture']
+        fields = ['id','contour', 'culture']
