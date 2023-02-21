@@ -18,7 +18,9 @@ class FarmerAdmin(admin.ModelAdmin):
 
 @admin.register(Plots)
 class PlotAdmin(admin.OSMGeoAdmin):
-    pass
+    list_display = ('farmer','culture','season')
+    list_filter = ('farmer', 'culture' )
+    
     
 
 admin.site.register(Seasons)

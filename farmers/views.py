@@ -16,3 +16,5 @@ class PlotViewSet(generics.ListAPIView):
 class PlotDetViewSet(generics.RetrieveUpdateAPIView):
     queryset = Plots.objects.all()
     serializer_class = PlotSerializer
+
+
